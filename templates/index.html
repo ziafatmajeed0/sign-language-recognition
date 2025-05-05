@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Language Recognition</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌟 Sign Language Recognition</h1>
+        </header>
+        <p>
+            Unlock the power of communication! Click the button below to start recognizing signs through your webcam in real time.
+        </p>
+
+       
+
+        
+        <div id="video-container">
+            <h3>Live Webcam Feed</h3>
+            <div class="video-wrapper">
+                <img id="video-feed" src="" >
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button id="start-camera" onclick="startCamera()">🎥 Start Recognition</button>
+            <button id="stop-camera" onclick="stopCamera()" disabled>🛑 Stop Recognition</button>
+        </div>
+        
+    </div>
+
+    
+    <footer>
+        <p>© 2024 Sign Language Recognition System. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const videoContainer = document.getElementById('video-container');
+        const videoFeed = document.getElementById('video-feed');
+        const startButton = document.getElementById('start-camera');
+        const stopButton = document.getElementById('stop-camera');
+
+        function startCamera() {
+            videoFeed.src = '/video_feed';
+            startButton.disabled = true;
+            stopButton.disabled = false;
+
+            videoContainer.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }
+
+        function stopCamera() {
+            videoFeed.src = '';
+         
+            startButton.disabled = false;
+            stopButton.disabled = true;
+
+        }
+    </script>
+</body>
+</html>

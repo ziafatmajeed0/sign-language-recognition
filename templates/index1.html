@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Language Recognition</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+</head>
+<body>
+  <!-- Loader -->
+  <div id="loader">
+    <div class="spinner"></div>
+    <p>Loading Sign Language Recognition App...</p>
+  </div>
+
+  <!-- Theme Switcher -->
+  <div class="theme-toggle">
+    <label>
+      <input type="checkbox" id="themeSwitcher" />
+      🌙 Dark Mode
+    </label>
+  </div>
+
+  <h1>🤟 Sign Language Recognition</h1>
+  <p class="subtitle">Connecting Hands to Words – Real-time Translation Powered by AI</p>
+
+  <div class="container">
+    <div class="video-box card">
+      <img id="video" src="{{ url_for('video_feed') }}" alt="Live Feed">
+      <p class="caption">👁️‍🗨️ Live Gesture Capture</p>
+    </div>
+
+    <div class="info-box card">
+      <div class="text-display">
+        <p><strong>Current Alphabet:</strong> <span id="alphabet-text"></span></p>
+        <p><strong>Current Word:</strong> <span id="word-text"></span></p>
+        <p><strong>Sentence:</strong> <span id="sentence-text"></span></p>
+        <hr>
+        <p><strong>Translated Word (Urdu):</strong> <span id="trans-word-text"></span></p>
+        <p><strong>Translated Sentence (Urdu):</strong> <span id="trans-sent-text"></span></p>
+      </div>
+
+      <div class="buttons">
+        <button id="pauseButton" onclick="togglePause()">⏸ Pause</button>
+        <button onclick="fetch('/speak_word',{method:'POST'})">🔊 Speak Word</button>
+        <button onclick="fetch('/speak_sentence',{method:'POST'})">🗣 Speak Sentence</button>
+        <button onclick="fetch('/translate_word',{method:'POST'})">🌐 Translate Word</button>
+        <button onclick="fetch('/translate_sentence',{method:'POST'})">🌍 Translate Sentence</button>
+        <button onclick="fetch('/reset',{method:'POST'})">🔄 Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>✨ Empowering communication through vision and AI | Built with ❤️</p>
+  </footer>
+
+  <script>
+    const src = new EventSource('/text_stream');
+    src.onmessage = e => {
+      const d = JSON.parse(e.data);
+      document.getElementById('alphabet-text').textContent = d.alphabet || '';
+      document.getElementById('word-text').textContent = d.word || '';
+      document.getElementById('sentence-text').textContent = d.sentence || '';
+      document.getElementById('trans-word-text').textContent = d.translated_word || '';
+      document.getElementById('trans-sent-text').textContent = d.translated_sentence || '';
+    };
+
+    function togglePause() {
+      const button = document.getElementById('pauseButton');
+      fetch('/toggle_prediction', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({})
+      }).then(response => response.json()).then(data => {
+        button.innerHTML = data.status === 'paused' ? '▶️ Resume' : '⏸ Pause';
+      });
+    }
+
+    window.onload = () => {
+      document.getElementById('loader').style.display = 'none';
+    };
+
+    document.getElementById('themeSwitcher').addEventListener('change', function () {
+      document.body.classList.toggle('dark');
+    });
+  </script>
+</body>
+</html>

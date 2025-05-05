@@ -1,0 +1,123 @@
+body {
+  background: #f4f7fa;
+  color: #222;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+h1 {
+  margin-top: 20px;
+  font-size: 36px;
+}
+.subtitle {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 20px;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+.video-box img {
+  width: 640px;
+  height: 480px;
+  border-radius: 12px;
+}
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 20px;
+}
+.caption {
+  margin-top: 10px;
+  font-style: italic;
+  color: #888;
+}
+.text-display p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+hr {
+  margin: 20px 0;
+}
+.buttons button {
+  margin: 5px;
+  padding: 10px 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #3498db;
+  color: white;
+  transition: background 0.2s;
+}
+.buttons button:hover {
+  background-color: #2980b9;
+}
+footer {
+  margin-top: 40px;
+  padding: 15px;
+  background: #f0f0f0;
+  color: #555;
+  font-size: 14px;
+}
+
+/* Loader Modal */
+#loader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #eaf4ff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+.spinner {
+  border: 6px solid #e0e0e0;
+  border-top: 6px solid #3498db;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 16px;
+  color: #555;
+}
+
+/* Dark Mode */
+body.dark {
+  background: linear-gradient(135deg, #1e1f26, #2d2f36);
+  color: #eee;
+}
+body.dark .card {
+  background: #2f2f2fdd;
+}
+body.dark .buttons button {
+  background-color: #444;
+  color: #eee;
+}
+body.dark .buttons button:hover {
+  background-color: #666;
+}
+body.dark footer {
+  background: #222;
+  color: #aaa;
+}
