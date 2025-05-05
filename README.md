@@ -4,7 +4,7 @@ This is a real-time Sign Language Recognition web app that uses **Mediapipe**, a
 
 ---
 
-![Project Preview](preview.png)
+![Project Preview](preview.jpg)
 
 
 ## ✨ Features
