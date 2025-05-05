@@ -4,6 +4,9 @@ This is a real-time Sign Language Recognition web app that uses **Mediapipe**, a
 
 ---
 
+![Project Preview](preview.png)
+
+
 ## ✨ Features
 
 - 📷 Real-time webcam feed for live ASL sign recognition
